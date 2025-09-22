@@ -1,24 +1,18 @@
 import sys
 import os
 
-# 将项目根目录加入模块搜索路径
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 def my_run():
-    """
-    实现一个支持 fork 系统调用的主运行循环。
-    本示例使用 os.fork() 演示 fork 的行为。
-    """
     print(f"Parent process starting (PID: {os.getpid()})")
 
     try:
-        # 模拟某种条件触发 fork，比如接收到任务
+        # 模拟触发
         print("my_run: Running main loop...")
 
-        # 假设在某个时刻需要创建新进程（例如处理新任务）
+        # 假设创建新进程
         input("Press Enter to fork a new process (or Ctrl+C to exit)...\n")
 
-        # ============ FORK 系统调用 ============
         pid = os.fork()
 
         if pid == 0:
@@ -49,7 +43,6 @@ def child_main():
     print(f"Child {os.getpid()}: finished.")
     os._exit(0)  # 子进程正常退出，避免影响父模块
 
-# ================== 运行示例 ==================
 
 if __name__ == "__main__":
     my_run()
